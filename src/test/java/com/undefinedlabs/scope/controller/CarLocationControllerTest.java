@@ -1,6 +1,6 @@
 package com.undefinedlabs.scope.controller;
 
-import com.undefinedlabs.scope.model.CarLocation;
+import com.undefinedlabs.scope.model.dto.CarLocationDTO;
 import com.undefinedlabs.scope.service.CarLocationService;
 import org.junit.Test;
 
@@ -15,14 +15,14 @@ public class CarLocationControllerTest {
     @Test
     public void should_return_car_location_from_service() {
         //Given
-        final CarLocation mockCarLocation = mock(CarLocation.class);
+        final CarLocationDTO mockCarLocation = mock(CarLocationDTO.class);
         final CarLocationService mockService = mock(CarLocationService.class);
-        when(mockService.findById(SAMPLE_UUID)).thenReturn(mockCarLocation);
+        when(mockService.getFromRemote(SAMPLE_UUID)).thenReturn(mockCarLocation);
 
         final CarLocationController sut = new CarLocationController(mockService);
 
         //When
-        final CarLocation result = sut.getByUuid(SAMPLE_UUID);
+        final CarLocationDTO result = sut.getByUuid(SAMPLE_UUID);
 
         //Then
         assertThat(result).isEqualTo(mockCarLocation);

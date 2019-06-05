@@ -1,4 +1,4 @@
-package com.undefinedlabs.scope.model;
+package com.undefinedlabs.scope.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonGetter;
@@ -7,14 +7,14 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class CarLocation {
+public class CarLocationDTO {
 
     private final String uuid;
     private final double latitude;
     private final double longitude;
 
     @JsonCreator
-    public CarLocation(
+    public CarLocationDTO(
             @JsonProperty("uuid") final String uuid,
             @JsonProperty("lat") final double latitude,
             @JsonProperty("lon") double longitude) {
@@ -44,7 +44,7 @@ public class CarLocation {
 
         if (o == null || getClass() != o.getClass()) return false;
 
-        CarLocation that = (CarLocation) o;
+        CarLocationDTO that = (CarLocationDTO) o;
 
         return new EqualsBuilder()
                 .append(latitude, that.latitude)

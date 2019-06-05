@@ -1,10 +1,10 @@
-package com.undefinedlabs.scope.model;
+package com.undefinedlabs.scope.model.dto;
 
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CarLocationTest {
+public class CarLocationDTOTest {
 
     private static final String SAMPLE_UUID = "sampleUUID";
     private static final double SAMPLE_LATITUDE = 0.0;
@@ -15,7 +15,7 @@ public class CarLocationTest {
         //Given
 
         //When
-        final CarLocation carLocation = new CarLocation(SAMPLE_UUID, SAMPLE_LATITUDE, SAMPLE_LONGITUDE);
+        final CarLocationDTO carLocation = new CarLocationDTO(SAMPLE_UUID, SAMPLE_LATITUDE, SAMPLE_LONGITUDE);
 
         //Then
         assertThat(carLocation.getUuid()).isEqualTo(SAMPLE_UUID);

@@ -1,6 +1,7 @@
 package com.undefinedlabs.scope.service;
 
-import com.undefinedlabs.scope.model.CarLocation;
+import com.undefinedlabs.scope.model.dto.CarLocationDTO;
+import com.undefinedlabs.scope.repository.CarLocationRepository;
 import org.junit.Test;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
@@ -18,15 +19,16 @@ public class CarLocationServiceTest {
     @Test
     public void should_return_car_location_from_remote_call() {
         //Given
-        final CarLocation mockCarLocation = mock(CarLocation.class);
-        final ResponseEntity<CarLocation> mockResponseEntity = mock(ResponseEntity.class);
+        final CarLocationDTO mockCarLocation = mock(CarLocationDTO.class);
+        final ResponseEntity<CarLocationDTO> mockResponseEntity = mock(ResponseEntity.class);
         when(mockResponseEntity.getBody()).thenReturn(mockCarLocation);
         final RestTemplate mockRestTemplate = mock(RestTemplate.class);
-        when(mockRestTemplate.getForEntity(anyString(), eq(CarLocation.class))).thenReturn(mockResponseEntity);
-        final CarLocationService sut = new CarLocationService(mockRestTemplate);
+        final CarLocationRepository mockCarLocationRepository = mock(CarLocationRepository.class);
+        when(mockRestTemplate.getForEntity(anyString(), eq(CarLocationDTO.class))).thenReturn(mockResponseEntity);
+        final CarLocationService sut = new CarLocationService(mockRestTemplate, mockCarLocationRepository);
 
         //When
-        final CarLocation result = sut.findById(SAMPLE_UUID);
+        final CarLocationDTO result = sut.getFromRemote(SAMPLE_UUID);
 
         //Then
         assertThat(result).isEqualTo(mockCarLocation);
