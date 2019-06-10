@@ -28,7 +28,7 @@
     <maven.surefire.plugin.version>2.22.1</maven.surefire.plugin.version>
     <maven.failsafe.plugin.version>2.22.1</maven.failsafe.plugin.version>
 
-    <scope.agent.version>0.1.4-beta.4</scope.agent.version>
+    <scope.agent.version>0.1.4</scope.agent.version>
   </properties>
 
   <dependencies>
@@ -45,6 +45,11 @@
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
     </dependency>
 
     <dependency>

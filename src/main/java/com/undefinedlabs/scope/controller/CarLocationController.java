@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/car")
 public class CarLocationController {
@@ -26,13 +28,13 @@ public class CarLocationController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public CarLocationDTO save(@RequestBody CarLocationDTO carLocation){
-        return this.carLocationService.save(carLocation);
+    public List<CarLocationDTO> saveAllDB(@RequestBody CarLocationDTO carLocation){
+        return this.carLocationService.saveAllDB(carLocation);
     }
 
     @RequestMapping(value = "/db/{uuid}", method = RequestMethod.GET)
-    public CarLocationDTO save(@PathVariable(name="uuid") String uuid){
-        return this.carLocationService.findByUuid(uuid);
+    public List<CarLocationDTO> save(@PathVariable(name="uuid") String uuid){
+        return this.carLocationService.findByUuidAllDB(uuid);
     }
 
 }

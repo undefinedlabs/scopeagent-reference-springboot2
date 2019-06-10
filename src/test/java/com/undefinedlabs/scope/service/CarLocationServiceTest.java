@@ -1,7 +1,8 @@
 package com.undefinedlabs.scope.service;
 
+import com.undefinedlabs.scope.db.h2.repository.H2CarLocationRepository;
+import com.undefinedlabs.scope.db.mysql.repository.MySQLCarLocationRepository;
 import com.undefinedlabs.scope.model.dto.CarLocationDTO;
-import com.undefinedlabs.scope.repository.CarLocationRepository;
 import org.junit.Test;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
@@ -23,9 +24,10 @@ public class CarLocationServiceTest {
         final ResponseEntity<CarLocationDTO> mockResponseEntity = mock(ResponseEntity.class);
         when(mockResponseEntity.getBody()).thenReturn(mockCarLocation);
         final RestTemplate mockRestTemplate = mock(RestTemplate.class);
-        final CarLocationRepository mockCarLocationRepository = mock(CarLocationRepository.class);
+        final H2CarLocationRepository h2MockCarLocationRepository = mock(H2CarLocationRepository.class);
+        final MySQLCarLocationRepository mySQLMockCarLocationRepository = mock(MySQLCarLocationRepository.class);
         when(mockRestTemplate.getForEntity(anyString(), eq(CarLocationDTO.class))).thenReturn(mockResponseEntity);
-        final CarLocationService sut = new CarLocationService(mockRestTemplate, mockCarLocationRepository);
+        final CarLocationService sut = new CarLocationService(mockRestTemplate, h2MockCarLocationRepository, mySQLMockCarLocationRepository);
 
         //When
         final CarLocationDTO result = sut.getFromRemote(SAMPLE_UUID);
